@@ -1,0 +1,18 @@
+[package]
+name = "simplenn"
+version = "0.1.0"
+authors = ["nebelgrau <nebelgrau@gmx.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+
+stm32l0 = {version = "0.11", features = ["stm32l0x1", "rt"]}
+stm32l0xx-hal = {version = "0.6.2", features = ["io-STM32L031", "stm32l0x1", "rt"]}
+panic-halt = "0.2"
+cortex-m = {version = "0.6", features = ["const-fn"] }
+cortex-m-rt = "0.6"    
+
+nb = "0.1"
+
