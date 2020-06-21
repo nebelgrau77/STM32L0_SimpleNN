@@ -4,10 +4,9 @@
 extern crate panic_halt;
 
 
-mod helpers;
+mod nn_lib;
 
-pub use crate::helpers::math::*;
-pub use crate::helpers::nn::*;
+pub use crate::nn_lib::nn::*;
 
 use cortex_m_rt::entry;
 use stm32l0xx_hal::{

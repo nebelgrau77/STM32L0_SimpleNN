@@ -116,3 +116,29 @@ hidden_layer(input, weights, predicted values)  {
 
 */
 
+/*
+
+
+USE 1D array instead of 2D
+
+fn main() {
+    
+    let mut data: [u16;6] = [10, 20, 30, 40, 50, 60];
+    
+    let X: usize = 3;
+    let Y: usize = 2;
+    
+    for y in 0..Y {
+        for x in 0..X {
+            println!("{}",data[(y*3)+x]);    
+        }
+        
+    }
+
+
+}
+
+
+
+
+*/

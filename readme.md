@@ -27,4 +27,8 @@ __updates__:
 
 __TO DO__:
 
-* find out how to use a 2D array slice
+* find out how to use a 2D array slice -> use 1D array instead, calculating indices, i.e.:
+
+[[1,2,3], [4,5,6], [7,8.9]] becomes [1,2,3,4,5,6,7,8,9] 
+
+* move the input, weights, indices etc. into model.rs, to have the following structure: app, NN lib, model
