@@ -35,7 +35,7 @@ pub mod nn {
 
 
     
-
+    /*
     fn elementwise_multiply(input_scalar: f64, weight_vector: [f64; 3], output_vector: &mut [f64;3], vector_len: usize) {
 
         for i in 0..vector_len {
@@ -44,20 +44,30 @@ pub mod nn {
 
 
     }
+    */
+
+    fn elementwise_multiply(input_scalar: f64, weight_vector: &[f64], output_vector: &mut [f64], vector_len: usize) {
+
+        for i in 0..vector_len {
+            output_vector[i] = input_scalar * weight_vector[i];
+        }
 
 
-    pub fn single_in_multiple_out_nn(input_scalar: f64, weight_vector: [f64; 3], output_vector: &mut [f64;3], vector_len: usize) {
+    }
 
-        elementwise_multiply(input_scalar, weight_vector, output_vector, vector_len);
+    pub fn single_in_multiple_out_nn(input_scalar: f64, weight_vector: &[f64], output_vector: &mut [f64], vector_len: usize) {
+
+        elementwise_multiply(input_scalar, &weight_vector, output_vector, vector_len);
 
     } 
 
 
-    fn matrix_vector_multiplication(input_vector: [f64;3], 
+    fn matrix_vector_multiplication(input_vector: &[f64], 
                                     INPUT_LEN: usize, 
-                                    output_vector: &mut [f64; 3], 
+                                    output_vector: &mut [f64], 
                                     OUTPUT_LEN: usize, 
                                     weights_matrix: [[f64; 3];3]) {
+                                    
         for k in 0..OUTPUT_LEN {
             for i in 0..INPUT_LEN {
                 output_vector[k] += input_vector[i] * weights_matrix[k][i]
@@ -65,15 +75,44 @@ pub mod nn {
         }
     }
 
-    pub fn multiple_in_multiple_out(input_vector: [f64;3], 
+    pub fn multiple_in_multiple_out(input_vector: &[f64], 
                                     INPUT_LEN: usize, 
-                                    output_vector: &mut [f64; 3], 
+                                    output_vector: &mut [f64], 
                                     OUTPUT_LEN: usize, 
                                     weights_matrix: [[f64; 3];3]) {
-        matrix_vector_multiplication(input_vector, INPUT_LEN, output_vector, OUTPUT_LEN, weights_matrix);
+                                    
+        matrix_vector_multiplication(&input_vector, INPUT_LEN, output_vector, OUTPUT_LEN, weights_matrix);
     }
 
+    
+    pub fn hidden_nn (input_vector: &[f64],
+                      INPUT_LEN: usize,
+                      HIDDEN_LEN: usize,
+                      input_to_hidden_weights: [[f64;3];3],
+                      OUTPUT_LEN: usize,
+                      hidden_to_output_weights: [[f64;3];3],
+                      output_vector: &mut [f64]){
+        
+        let mut hidden_predicted: [f64; 3] = [0_f64; 3];
+        matrix_vector_multiplication(&input_vector, INPUT_LEN, &mut hidden_predicted, OUTPUT_LEN, input_to_hidden_weights);
+        matrix_vector_multiplication(&hidden_predicted, HIDDEN_LEN, output_vector, OUTPUT_LEN, hidden_to_output_weights);
+        
+    }
+    
 }
 
 
+/*
+//hidden layer
+
+weights: [[f64; x];2] = [[input_to_hidden], [hidden_to_output]];
+
+hidden_layer(input, weights, predicted values)  {
+    vector_matrix_multiply(input, weights[0], hidden_pred)
+    vector_matrix_multiply(hidden_pred, weights[1], predicted_values)
+}
+
+
+
+*/
 
