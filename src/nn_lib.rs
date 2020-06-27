@@ -42,92 +42,51 @@ pub mod nn {
                                     input_len: usize, 
                                     output_vector: &mut [f64], 
                                     output_len: usize, 
-                                    weights_matrix: [[f64; 3];3]) {
-                                    
+                                    weights_matrix: &[f64]) {
+        
         for k in 0..output_len {
             for i in 0..input_len {
-                output_vector[k] += input_vector[i] * weights_matrix[k][i]
+                output_vector[k] += input_vector[i] * weights_matrix[k*3+i]
             }
         }
     }
 
+
+
     pub fn multiple_in_multiple_out(input_vector: &[f64], 
-                                    input_len: usize, 
-                                    output_vector: &mut [f64], 
-                                    output_len: usize, 
-                                    weights_matrix: [[f64; 3];3]) {
-                                    
-        matrix_vector_multiplication(&input_vector, input_len, output_vector, output_len, weights_matrix);
+        input_len: usize, 
+        output_vector: &mut [f64], 
+        output_len: usize, 
+        weights_matrix: &[f64]) {
+    
+        matrix_vector_multiplication(&input_vector, input_len, output_vector, output_len, &weights_matrix);
+
     }
 
     
+
     pub fn hidden_nn (input_vector: &[f64],
-                      input_len: usize,
-                      hidden_len: usize,
-                      input_to_hidden_weights: [[f64;3];3],
-                      output_len: usize,
-                      hidden_to_output_weights: [[f64;3];3],
-                      output_vector: &mut [f64]){
-        
+        input_len: usize,
+        hidden_len: usize,
+        input_to_hidden_weights: &[f64],
+        output_len: usize,
+        hidden_to_output_weights: &[f64],
+        output_vector: &mut [f64]){
+
         let mut hidden_predicted: [f64; 3] = [0_f64; 3];
         matrix_vector_multiplication(&input_vector, input_len, &mut hidden_predicted, output_len, input_to_hidden_weights);
         matrix_vector_multiplication(&hidden_predicted, hidden_len, output_vector, output_len, hidden_to_output_weights);
-        
+
+        }
+
     }
-    
-}
+
+
 
 
 /*
-//hidden layer
 
-weights: [[f64; x];2] = [[input_to_hidden], [hidden_to_output]];
-
-hidden_layer(input, weights, predicted values)  {
-    vector_matrix_multiply(input, weights[0], hidden_pred)
-    vector_matrix_multiply(hidden_pred, weights[1], predicted_values)
-}
-
-
-
-    /*
-    fn elementwise_multiply(input_scalar: f64, weight_vector: [f64; 3], output_vector: &mut [f64;3], vector_len: usize) {
-
-        for i in 0..vector_len {
-            output_vector[i] = input_scalar * weight_vector[i];
-        }
-
-
-    }
-    */
-
-
-
-USE 1D array instead of 2D
-
-fn main() {
-    
-    let mut data: [u16;6] = [10, 20, 30, 40, 50, 60];
-    
-    let X: usize = 3;
-    let Y: usize = 2;
-    
-    for y in 0..Y {
-        for x in 0..X {
-            println!("{}",data[(y*3)+x]);    
-        }
-        
-    }
-
-
-}
-
-
-
-
-*/
-
-/*
+// AN ALTERNATIVE APPROACH AS SUGGESTED BY A MORE EXPERIENCED RUSTACEAN:
 
 fn foo<'a, T, U>(
     iter: T
@@ -154,10 +113,7 @@ fn main(){
 }
 
 // Basically it takes any type T that implements IntoIterator, which yields U
-
 // Then U can be any type that implements IntoIterator which yields &f32
-
 // &[U] implements IntoIterator<Item = &U> and &[f32] implements IntoIterator<Item = &f32>
-
 
 */

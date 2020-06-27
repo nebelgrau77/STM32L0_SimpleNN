@@ -78,7 +78,7 @@ fn main() -> ! {
 
     // 'AI' part comes here: predicting multiple output with hidden layer 
 
-    hidden_nn(&input_vector, IN_LEN, HID_LEN, INPUT_TO_HIDDEN_WEIGHTS, OUT_LEN, HIDDEN_TO_OUTPUT_WEIGHTS, &mut predicted_results);
+    hidden_nn(&input_vector, IN_LEN, HID_LEN, &INPUT_TO_HIDDEN_WEIGHTS, OUT_LEN, &HIDDEN_TO_OUTPUT_WEIGHTS, &mut predicted_results);
 
     writeln!(tx, "Sad/happy prediction: {:.3}\r", predicted_results[SAD_PREDICTION_IDX]).unwrap();
     writeln!(tx, "Sick/healthy prediction: {:.3}\r", predicted_results[SICK_PREDCITION_IDX]).unwrap();

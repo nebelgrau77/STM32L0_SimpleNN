@@ -16,15 +16,16 @@ pub mod model {
     pub const  SICK_PREDCITION_IDX: usize = 1;
     pub const  ACTIVE_PREDICTION_IDX: usize = 2;
        
-    // weights
+    // weights (converted into 1D arrays for easier handling by the functions)
 
-    pub const INPUT_TO_HIDDEN_WEIGHTS: [[f64;3];3] = [[-2.0,9.5,2.01], // hid[0]
-                                                     [-0.8,7.2,6.3],   // hid[1]
-                                                     [-0.5,0.45,0.9]]; // hid[2]
-    
-    pub const HIDDEN_TO_OUTPUT_WEIGHTS: [[f64;3];3] = [[-1.0,1.15,0.11], // sad or happy
-                                                       [-0.18,0.15,-0.01], // sick or healthy
-                                                       [0.25,-0.25,-0.1]]; // active or inactive
+    pub const INPUT_TO_HIDDEN_WEIGHTS: [f64;9] = [-2.0,9.5,2.01, // hid[0]
+                                                -0.8,7.2,6.3,   // hid[1]
+                                                -0.5,0.45,0.9]; // hid[2]
+
+    pub const HIDDEN_TO_OUTPUT_WEIGHTS: [f64;9] = [-1.0,1.15,0.11, // sad or happy
+                                                  -0.18,0.15,-0.01, // sick or healthy
+                                                  0.25,-0.25,-0.1]; // active or inactive
+
 
 
 }
