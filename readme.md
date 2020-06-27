@@ -17,7 +17,7 @@ with the following private functions they use:
 * elementwise multiply
 * matrix vector multplication
 
-The target is STM32L0xx MCU, in my case Nucleo-32 STM32L031K6 dev board. To experiment with low power consumption the code uses MSI oscillator as main clock source, and LSE 32 kHz oscillator as Low Power UART source. 
+The target is STM32L0xx MCU, in my case Nucleo-32 STM32L031K6 dev board. To experiment with low power consumption the code uses MSI oscillator as main clock source, and LSE 32 kHz oscillator as Low Power UART clock source. 
 
 It's my work in progress, so things are just commented out for now, as I go ahead with the course :)
 
