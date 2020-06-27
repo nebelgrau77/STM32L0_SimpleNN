@@ -1,13 +1,3 @@
-pub mod math {
-
-    pub fn square(value: i32) -> i32 {
-        return value * value
-    }
-
-    pub fn cube(value: i32) -> i32 {
-        return value * value * value
-    }
-}
 
 pub mod nn {
 
@@ -33,25 +23,11 @@ pub mod nn {
 
     }
 
-
-    
-    /*
-    fn elementwise_multiply(input_scalar: f64, weight_vector: [f64; 3], output_vector: &mut [f64;3], vector_len: usize) {
-
-        for i in 0..vector_len {
-            output_vector[i] = input_scalar * weight_vector[i];
-        }
-
-
-    }
-    */
-
     fn elementwise_multiply(input_scalar: f64, weight_vector: &[f64], output_vector: &mut [f64], vector_len: usize) {
 
         for i in 0..vector_len {
             output_vector[i] = input_scalar * weight_vector[i];
         }
-
 
     }
 
@@ -63,39 +39,39 @@ pub mod nn {
 
 
     fn matrix_vector_multiplication(input_vector: &[f64], 
-                                    INPUT_LEN: usize, 
+                                    input_len: usize, 
                                     output_vector: &mut [f64], 
-                                    OUTPUT_LEN: usize, 
+                                    output_len: usize, 
                                     weights_matrix: [[f64; 3];3]) {
                                     
-        for k in 0..OUTPUT_LEN {
-            for i in 0..INPUT_LEN {
+        for k in 0..output_len {
+            for i in 0..input_len {
                 output_vector[k] += input_vector[i] * weights_matrix[k][i]
             }
         }
     }
 
     pub fn multiple_in_multiple_out(input_vector: &[f64], 
-                                    INPUT_LEN: usize, 
+                                    input_len: usize, 
                                     output_vector: &mut [f64], 
-                                    OUTPUT_LEN: usize, 
+                                    output_len: usize, 
                                     weights_matrix: [[f64; 3];3]) {
                                     
-        matrix_vector_multiplication(&input_vector, INPUT_LEN, output_vector, OUTPUT_LEN, weights_matrix);
+        matrix_vector_multiplication(&input_vector, input_len, output_vector, output_len, weights_matrix);
     }
 
     
     pub fn hidden_nn (input_vector: &[f64],
-                      INPUT_LEN: usize,
-                      HIDDEN_LEN: usize,
+                      input_len: usize,
+                      hidden_len: usize,
                       input_to_hidden_weights: [[f64;3];3],
-                      OUTPUT_LEN: usize,
+                      output_len: usize,
                       hidden_to_output_weights: [[f64;3];3],
                       output_vector: &mut [f64]){
         
         let mut hidden_predicted: [f64; 3] = [0_f64; 3];
-        matrix_vector_multiplication(&input_vector, INPUT_LEN, &mut hidden_predicted, OUTPUT_LEN, input_to_hidden_weights);
-        matrix_vector_multiplication(&hidden_predicted, HIDDEN_LEN, output_vector, OUTPUT_LEN, hidden_to_output_weights);
+        matrix_vector_multiplication(&input_vector, input_len, &mut hidden_predicted, output_len, input_to_hidden_weights);
+        matrix_vector_multiplication(&hidden_predicted, hidden_len, output_vector, output_len, hidden_to_output_weights);
         
     }
     
@@ -114,9 +90,17 @@ hidden_layer(input, weights, predicted values)  {
 
 
 
-*/
+    /*
+    fn elementwise_multiply(input_scalar: f64, weight_vector: [f64; 3], output_vector: &mut [f64;3], vector_len: usize) {
 
-/*
+        for i in 0..vector_len {
+            output_vector[i] = input_scalar * weight_vector[i];
+        }
+
+
+    }
+    */
+
 
 
 USE 1D array instead of 2D
@@ -139,6 +123,41 @@ fn main() {
 }
 
 
+
+
+*/
+
+/*
+
+fn foo<'a, T, U>(
+    iter: T
+) 
+    where T: IntoIterator<Item = U>,
+    U: IntoIterator<Item = &'a f32>
+{
+
+    for (x, t) in iter.into_iter().enumerate() {
+        for (y, u) in t.into_iter().enumerate() {
+            println!("{}/{}: {}", x, y, u);
+        }
+    }
+}
+
+fn main(){
+    let values: [[f32; 3]; 3] = [
+        [1.0, 2.0, 3.0],
+        [4.0, 5.0, 6.0],
+        [7.0, 8.0, 9.0]
+    ];
+    
+    foo(&values)
+}
+
+// Basically it takes any type T that implements IntoIterator, which yields U
+
+// Then U can be any type that implements IntoIterator which yields &f32
+
+// &[U] implements IntoIterator<Item = &U> and &[f32] implements IntoIterator<Item = &f32>
 
 
 */
