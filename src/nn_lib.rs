@@ -102,7 +102,7 @@ pub mod nn {
                                 expected_value: f64,
                                 step_amount: f64,
                                 epochs: u32, 
-                                tx: stm32l0xx_hal::serial::Tx<stm32l0::stm32l0x1::LPUART1> ) {
+                                tx: &mut stm32l0xx_hal::serial::Tx<stm32l0::stm32l0x1::LPUART1> ) {
 
         let mut prediction: f64 = 0.0;
         let mut error: f64 = 0.0;
@@ -114,7 +114,7 @@ pub mod nn {
         for _ in 0..epochs {
             prediction = input * weight;
             error = find_error_simple(prediction, expected_value);
-
+            use core::fmt::Write;
             writeln!(tx, "Error: {:.3}      Prediction: {:.3}\r\n", error, prediction).unwrap(); //this won't work
 
             up_prediction = input * (weight + step_amount);

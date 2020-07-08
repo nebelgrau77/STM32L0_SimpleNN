@@ -8,7 +8,7 @@ edition = "2018"
 
 [dependencies]
 
-stm32l0 = {version = "0.11", features = ["stm32l0x1", "rt"]}
+stm32l0 = {version = "0.10", features = ["stm32l0x1", "rt"]}
 stm32l0xx-hal = {version = "0.6.2", features = ["io-STM32L031", "stm32l0x1", "rt"]}
 panic-halt = "0.2"
 cortex-m = {version = "0.6", features = ["const-fn"] }
