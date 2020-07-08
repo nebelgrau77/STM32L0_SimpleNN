@@ -93,11 +93,17 @@ pub mod nn {
         
     }
 
-    /*
+    
     
     // this won't work, needs access to serial tx
     
-    pub fn brute_force_learning(input: f64, mut weight: f64, expected_value: f64, step_amount: f64, epochs: u32) -> (f64, f64) {
+    pub fn brute_force_learning(input: f64,
+                                mut weight: f64,
+                                expected_value: f64,
+                                step_amount: f64,
+                                epochs: u32, 
+                                tx: stm32l0xx_hal::serial::Tx<stm32l0::stm32l0x1::LPUART1> ) {
+
         let mut prediction: f64 = 0.0;
         let mut error: f64 = 0.0;
         let mut up_prediction: f64 = 0.0;
@@ -127,46 +133,12 @@ pub mod nn {
 
         }
 
-        return (prediction, error);
-
-    }
-    */
+        
 
     }
 
 
-
-
-/*
-
-// AN ALTERNATIVE APPROACH AS SUGGESTED BY A MORE EXPERIENCED RUSTACEAN:
-
-fn foo<'a, T, U>(
-    iter: T
-) 
-    where T: IntoIterator<Item = U>,
-    U: IntoIterator<Item = &'a f32>
-{
-
-    for (x, t) in iter.into_iter().enumerate() {
-        for (y, u) in t.into_iter().enumerate() {
-            println!("{}/{}: {}", x, y, u);
-        }
     }
-}
 
-fn main(){
-    let values: [[f32; 3]; 3] = [
-        [1.0, 2.0, 3.0],
-        [4.0, 5.0, 6.0],
-        [7.0, 8.0, 9.0]
-    ];
-    
-    foo(&values)
-}
 
-// Basically it takes any type T that implements IntoIterator, which yields U
-// Then U can be any type that implements IntoIterator which yields &f32
-// &[U] implements IntoIterator<Item = &U> and &[f32] implements IntoIterator<Item = &f32>
 
-*/

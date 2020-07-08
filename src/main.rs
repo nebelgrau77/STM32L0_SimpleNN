@@ -60,7 +60,7 @@ fn main() -> ! {
     // 'AI' part comes here:
 
 
-
+    // error calculation done here: I want to move it to nn_lib.rs instead
     
     let mut prediction: f64 = 0.0;
     let mut error: f64 = 0.0;
@@ -91,34 +91,7 @@ fn main() -> ! {
 
     }
 
-    
 
-    /*
-    fn some_function(value: u8, tx: stm32l0xx_hal::serial::Tx<stm32l0::stm32l0x1::LPUART1>) {
-        writeln!(tx, "Value: {}", value).unwrap();
-    }
-    */
-    /*
-
-    hidden_nn(&input_vector, IN_LEN, HID_LEN, &INPUT_TO_HIDDEN_WEIGHTS, OUT_LEN, &HIDDEN_TO_OUTPUT_WEIGHTS, &mut predicted_results);
-
-    writeln!(tx, "Sad/happy prediction: {:.3}\r", predicted_results[SAD_PREDICTION_IDX]).unwrap();
-    writeln!(tx, "Sad/happy error: {:.6}\r", find_error_simple(predicted_results[SAD_PREDICTION_IDX], 
-                                                               expected_values[SAD_PREDICTION_IDX])).unwrap();
-
-    writeln!(tx, "Sick/healthy prediction: {:.3}\r", predicted_results[SICK_PREDICTION_IDX]).unwrap();
-    writeln!(tx, "Sick/healthy error: {:.6}\r", find_error_simple(predicted_results[SICK_PREDICTION_IDX], 
-                                                                  expected_values[SICK_PREDICTION_IDX])).unwrap();
-
-    writeln!(tx, "Active/inactive prediction: {:.3}\r", predicted_results[ACTIVE_PREDICTION_IDX]).unwrap();
-    writeln!(tx, "Active/inactive error: {:.6}\r", find_error_simple(predicted_results[ACTIVE_PREDICTION_IDX], 
-                                                                     expected_values[ACTIVE_PREDICTION_IDX])).unwrap();
-
-    */
-
-    loop {
-    }
-
-
+    loop {}
 
 }
