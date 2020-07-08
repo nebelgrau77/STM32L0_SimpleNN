@@ -1,4 +1,3 @@
-
 pub mod nn {
 
     fn weighted_sum(input: [f64;3], weight: [f64; 3], input_len: u32) -> f64 {
@@ -78,6 +77,55 @@ pub mod nn {
         matrix_vector_multiplication(&hidden_predicted, hidden_len, output_vector, output_len, hidden_to_output_weights);
 
         }
+
+
+    pub fn find_error_simple(yhat: f64, y: f64) -> f64 {
+
+        let temp: f64 = yhat-y;
+        return temp * temp; //x.powf(y) not available in no_std
+        
+    }
+
+    pub fn find_error(input: f64, weight: f64, expected_value: f64) -> f64 {
+
+        let temp: f64 = (input * weight) - expected_value; 
+        return temp * temp; //x.powf(y) not available
+        
+    }
+
+
+    pub fn brute_force_learning(input: f64, mut weight: f64, expected_value: f64, step_amount: f64, epochs: u32) -> (f64, f64) {
+        let mut prediction: f64 = 0.0;
+        let mut error: f64 = 0.0;
+        let mut up_prediction: f64 = 0.0;
+        let mut up_error: f64 = 0.0;
+        let mut down_prediction: f64 = 0.0;
+        let mut down_error: f64 = 0.0;
+
+        for _ in 0..epochs {
+            prediction = input * weight;
+            error = find_error_simple(prediction, expected_value);
+
+            up_prediction = input * (weight + step_amount);
+            up_error = find_error_simple(up_prediction, expected_value);
+
+            down_prediction = input * (weight - step_amount);
+            down_error = find_error_simple(down_prediction, expected_value);
+
+            if down_error < up_error {
+                weight = weight - step_amount;
+            }
+
+            if down_error > up_error {
+                weight = weight + step_amount;
+            }
+
+        }
+
+        return (prediction, error);
+
+    }
+
 
     }
 

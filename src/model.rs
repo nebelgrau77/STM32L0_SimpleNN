@@ -13,7 +13,7 @@ pub mod model {
     pub const AIRQUALITY_PREDICTION_IDX: usize = 2;
 
     pub const  SAD_PREDICTION_IDX: usize = 0; 
-    pub const  SICK_PREDCITION_IDX: usize = 1;
+    pub const  SICK_PREDICTION_IDX: usize = 1;
     pub const  ACTIVE_PREDICTION_IDX: usize = 2;
        
     // weights (converted into 1D arrays for easier handling by the functions)
