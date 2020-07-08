@@ -93,7 +93,10 @@ pub mod nn {
         
     }
 
-
+    /*
+    
+    // this won't work, needs access to serial tx
+    
     pub fn brute_force_learning(input: f64, mut weight: f64, expected_value: f64, step_amount: f64, epochs: u32) -> (f64, f64) {
         let mut prediction: f64 = 0.0;
         let mut error: f64 = 0.0;
@@ -105,6 +108,8 @@ pub mod nn {
         for _ in 0..epochs {
             prediction = input * weight;
             error = find_error_simple(prediction, expected_value);
+
+            writeln!(tx, "Error: {:.3}      Prediction: {:.3}\r\n", error, prediction).unwrap(); //this won't work
 
             up_prediction = input * (weight + step_amount);
             up_error = find_error_simple(up_prediction, expected_value);
@@ -125,7 +130,7 @@ pub mod nn {
         return (prediction, error);
 
     }
-
+    */
 
     }
 
